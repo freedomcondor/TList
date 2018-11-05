@@ -12,13 +12,26 @@ private:
 		Node *next, *prev;
 	}*head, *tail, *focal;
 
+	Node* createNode()
+	{
+		Node *p;
+		p = new Node();
+		return p;
+	}
+	int deleteNode(Node *p)
+	{
+		delete p;
+		return 0;
+	}
+
 public:
 	List();
 	~List();
 	int length;
-	int insert(T x);
-	int del(T x);
 	T& getFocal();
+
+	int insert(T x);
+	int delFocal();
 };
 
 #include "List.cpp"

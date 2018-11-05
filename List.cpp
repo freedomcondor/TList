@@ -4,13 +4,13 @@
 template <class T>
 List<T>::List()
 {
-	head = (Node*)malloc(sizeof(Node));
-	tail = (Node*)malloc(sizeof(Node));
+	head = createNode();
+	tail = createNode();
 	head->next = tail;
 	head->prev = NULL;
 	tail->next = NULL;
 	tail->next = NULL;
-	focal = head;
+	focal = tail;
 
 	length = 0;
 }
@@ -23,7 +23,7 @@ List<T>::~List()
 	while (p != NULL)
 	{
 		q = p->next;
-		delete p;
+		deleteNode(p);
 		p = q;
 	}
 }
@@ -38,7 +38,11 @@ template <class T>
 int List<T>::insert(T x)
 {
 	Node *p;  
-	p = (Node*)malloc(sizeof(Node));
+
+	if (length == 0)
+		focal = head;
+
+	p = createNode();
 	p->data = x;
 
 	p->next = focal->next;
@@ -50,4 +54,25 @@ int List<T>::insert(T x)
 	focal = p;
 
 	length++;
+	return 0;
 }
+
+template <class T>
+int List<T>::delFocal()
+{
+	if (length == 0)
+		return -1;
+
+	Node* p = focal;
+	focal->prev->next = focal->next;
+	focal->next->prev = focal->prev;
+	focal = focal->next;
+
+	deleteNode(p);
+
+	length--;
+	if ((focal == tail) && (length != 0)) focal = tail->prev;
+
+	return 0;
+}
+
