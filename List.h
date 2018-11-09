@@ -29,9 +29,17 @@ public:
 	~List();
 	int length;
 	T& getFocal();
+	int moveNextFocal();
+	int movePrevFocal();
+	int moveHeadFocal();
+	int moveTailFocal();
+	int focalAtHead();
+	int focalAtTail();
 
 	int insert(T x);
 	int delFocal();
+	int pushHead(T x);
+	int pushTail(T x);
 };
 
 #include "List.cpp"

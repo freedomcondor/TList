@@ -12,22 +12,55 @@ int main()
 	List<struct test> b;
 	struct test bNode, bNode2;
 
-	bNode.a = 234;
-	bNode.b = 432;
-
 	bNode2.a = 789;
 	bNode2.b = 987;
 
-	a.insert(1);
-	a.insert(2);
+	printf("-- a empty ------------------------\n");
+	for (a.moveHeadFocal(); !a.focalAtTail(); a.moveNextFocal())
+		printf("%d\n",a.getFocal());
+	printf("--------------------------\n");
+
+	//a.insert(1);
+	//a.insert(2);
+	a.pushTail(1);
+	a.pushTail(2);
+
+	a.pushHead(3);
+	a.pushHead(4);
+
+	printf("-- a after insert ------------------------\n");
+	for (a.moveHeadFocal(); !a.focalAtTail(); a.moveNextFocal())
+		printf("%d\n",a.getFocal());
+	printf("--------------------------\n");
+
+	printf("-- b empty ------------------------\n");
+	for (b.moveHeadFocal(); !b.focalAtTail(); b.moveNextFocal())
+		printf("%d %d\n",b.getFocal().a, b.getFocal().b);
+	printf("--------------------------\n");
+
+	b.moveTailFocal();
 	b.insert(bNode);
-	printf("b.focal : %d\n",b.getFocal().b);
 
-	b.insert(bNocal: de2);
-	printf("b.focal : %d\n",b.getFocal().b);
+	printf("-- b insert 1 ------------------------\n");
+	for (b.moveHeadFocal(); !b.focalAtTail(); b.moveNextFocal())
+		printf("%d %d\n",b.getFocal().a, b.getFocal().b);
+	printf("--------------------------\n");
 
+	b.moveTailFocal();
+	b.insert(bNode2);
+
+	printf("-- b insert 2 ------------------------\n");
+	for (b.moveHeadFocal(); !b.focalAtTail(); b.moveNextFocal())
+		printf("%d %d\n",b.getFocal().a, b.getFocal().b);
+	printf("--------------------------\n");
+
+	b.moveHeadFocal();
 	b.delFocal();
-	printf("b.focal : %d\n",b.getFocal().b);
+
+	printf("-- b delete 1 ------------------------\n");
+	for (b.moveHeadFocal(); !b.focalAtTail(); b.moveNextFocal())
+		printf("%d %d\n",b.getFocal().a, b.getFocal().b);
+	printf("--------------------------\n");
 
 	return 0;
 }
