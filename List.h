@@ -1,3 +1,10 @@
+/*
+ *    Zhu Weixu
+ *        zhuweixu_harry@126.com
+ *    
+ *    Version 1.0 : everything basic
+ */
+
 #ifndef LIST
 #define LIST
 
@@ -40,6 +47,8 @@ public:
 	int delFocal();
 	int pushHead(T x);
 	int pushTail(T x);
+	T popHead();
+	T popTail();
 };
 
 #include "List.cpp"

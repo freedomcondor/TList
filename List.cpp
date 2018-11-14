@@ -1,3 +1,10 @@
+/*
+ *    Zhu Weixu
+ *        zhuweixu_harry@126.com
+ *    
+ *    Version 1.0 : everything basic
+ */
+
 #include "stdlib.h"
 #include "stdio.h"
 
@@ -54,6 +61,7 @@ int List<T>::movePrevFocal()
 		focal = focal->prev;
 		return 0;
 	}
+	else
 		return -1;
 }
 
@@ -81,32 +89,6 @@ template <class T>
 int List<T>::focalAtTail()
 {
 	return (focal == tail);
-}
-
-template <class T>
-int List<T>::pushTail(T x)
-{
-	Node *temp;
-
-	temp = focal;
-	focal = tail;
-	insert(x);
-	if (length != 1)
-		focal = temp;
-	return 0;
-}
-
-template <class T>
-int List<T>::pushHead(T x)
-{
-	Node *temp;
-
-	temp = focal;
-	focal = head;
-	insert(x);
-	if (length != 1)
-		focal = temp;
-	return 0;
 }
 
 template <class T>
@@ -151,3 +133,68 @@ int List<T>::delFocal()
 	return 0;
 }
 
+template <class T>
+int List<T>::pushTail(T x)
+{
+	Node *temp;
+
+	temp = focal;
+	focal = tail;
+	insert(x);
+	if (length != 1)
+		focal = temp;
+	return 0;
+}
+
+template <class T>
+int List<T>::pushHead(T x)
+{
+	Node *temp;
+
+	temp = focal;
+	focal = head;
+	insert(x);
+	if (length != 1)
+		focal = temp;
+	return 0;
+}
+
+template <class T>
+T List<T>::popHead()
+{
+	Node *temp;
+	T data;
+
+	if (length == 0) return getFocal();
+
+	temp = focal;
+	focal = head->next;
+	if (temp == focal) temp = focal->next;
+
+	data = getFocal();
+	delFocal();
+
+	focal = temp;
+
+	return data;
+}
+
+template <class T>
+T List<T>::popTail()
+{
+	Node *temp;
+	T data;
+
+	if (length == 0) return getFocal();
+
+	temp = focal;
+	focal = tail->prev;
+	if (temp == focal) temp = focal->prev;
+
+	data = getFocal();
+	delFocal();
+
+	focal = temp;
+
+	return data;
+}

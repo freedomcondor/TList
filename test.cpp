@@ -33,6 +33,23 @@ int main()
 		printf("%d\n",a.getFocal());
 	printf("--------------------------\n");
 
+	int temp = a.popHead();
+	printf("pop = %d\n", temp);
+	printf("-- a after pop ------------------------\n");
+	for (a.moveHeadFocal(); !a.focalAtTail(); a.moveNextFocal())
+		printf("%d\n",a.getFocal());
+	printf("--------------------------\n");
+
+	temp = a.popTail();
+	printf("pop = %d\n", temp);
+	printf("-- a after another pop ------------------------\n");
+	for (a.moveHeadFocal(); !a.focalAtTail(); a.moveNextFocal())
+		printf("%d\n",a.getFocal());
+	printf("--------------------------\n");
+
+
+
+
 	printf("-- b empty ------------------------\n");
 	for (b.moveHeadFocal(); !b.focalAtTail(); b.moveNextFocal())
 		printf("%d %d\n",b.getFocal().a, b.getFocal().b);
